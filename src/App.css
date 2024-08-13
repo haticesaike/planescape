@@ -1,0 +1,27 @@
+.App{
+    background-color: #f5f3f7;
+    border-radius: 20px;
+    height:80vh;
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.header{
+    flex: 1;
+
+}
+
+.container{
+    flex: 7;
+    display: flex;
+}
+.flight-details{
+    flex: 5;
+
+}
+
+.sidebar{
+    flex: 2;
+
+}
