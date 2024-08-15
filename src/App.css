@@ -1,32 +1,30 @@
 .App {
     background-color: #f5f3f7;
     border-radius: 20px;
-    height: 80vh;
-    width: 80vw;
+    height: 90vh;
+    width: 90vw;
     display: flex;
     flex-direction: column;
     box-shadow: -1px 39px 70px -40px rgba(53, 31, 239, 0.68);
     -webkit-box-shadow: -1px 39px 70px -40px rgba(53, 31, 239, 0.68);
     -moz-box-shadow: -1px 39px 70px -40px rgba(53, 31, 239, 0.68);
-
 }
 
-.header{
+.header {
     flex: 1;
     margin: 1rem;
-
 }
 
-.container{
+.container {
     flex: 7;
     display: flex;
 }
-.flight-details{
+
+.flight-details {
     flex: 5;
     padding: 1rem;
-
 }
 
-.sidebar{
+.sidebar {
     flex: 1;
 }

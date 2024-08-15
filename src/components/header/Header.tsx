@@ -11,7 +11,7 @@ import { CgProfile } from "react-icons/cg";
 function Header() {
   return <div className={styles.cover}>
     <div className={styles.left}>
-      <div className={styles.logo}><IoIosAirplane className={styles.iconLogo} />
+      <div className={styles.logo}><IoIosAirplane   className={styles.iconLogo} />
       </div>
       <div className={styles.search}>PLANE SCAPE</div>
     </div>

@@ -1,0 +1,80 @@
+.no-cursor {
+    cursor: none;
+}
+
+.bookFlight {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.flight_booking_header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flight_booking_title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.flight_booking_title p {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.logo {
+    font-size: 1.5rem;
+}
+
+button {
+    border: none;
+    background-color: var(--secondary);
+    padding: 0.7rem;
+    color: var(--primary);
+    font-weight: bold;
+    cursor: pointer;
+    width: 8rem;
+}
+
+.button_one {
+    border-radius: 20px 0 0 20px;
+}
+
+.button_two {
+    border-radius: 0 20px 20px 0;
+}
+
+.active {
+    background-color: var(--primary);
+    color: white;
+}
+
+.icon {
+    font-size: 1rem;
+    color: var(--primary);
+}
+
+.flight_booking_content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flight_booking_location {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+
+}
+
+.flight_date {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.flight_booking_date {
+    width: 18rem;
+}
