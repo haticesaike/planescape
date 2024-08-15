@@ -23,9 +23,10 @@
 }
 .flight-details{
     flex: 5;
+    padding: 1rem;
 
 }
 
 .sidebar{
-    flex: 2;
+    flex: 1;
 }

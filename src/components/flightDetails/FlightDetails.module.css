@@ -1,0 +1,31 @@
+.flightDetails{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    gap: 1rem;
+}
+
+.bookFlight{
+    flex: 2;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.flightResult{
+    display: flex;
+    flex: 5;
+    gap: 1rem;
+}
+
+.flightList{
+    flex: 3;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.filters{
+    flex: 1;
+    background-color: white;
+    border-radius: 10px;
+}
