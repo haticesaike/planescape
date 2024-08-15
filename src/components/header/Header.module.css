@@ -1,0 +1,47 @@
+@import "../../index.css";
+.cover{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+}
+.left{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: bolder;
+    font-size: 1.5rem;
+
+}
+.right{
+    display: flex;
+    gap: 1rem;
+    font-size: 1.3rem;
+}
+.item{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.logo{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: var(--primary);
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.iconLogo{
+    font-size: 2.5rem;
+    color: white;
+    padding-right: 5px;
+
+}
+.icon{
+    color:var(--primary);
+}
+

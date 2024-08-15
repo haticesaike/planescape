@@ -13,4 +13,10 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #e8defe;
+
+}
+
+:root {
+  --primary: #400cac;
+
 }
