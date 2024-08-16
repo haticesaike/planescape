@@ -1,7 +1,56 @@
 .flightList {
     display: flex;
     justify-content: center;
-    align-items: center;
     height: 100%;
     width: 100%;
+}
+
+.flightItem {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    gap: 0.8rem;
+    height: 10rem;
+    width: 95%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.destination {
+    font-weight: bolder;
+}
+
+.departure, .arrival {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    color: var(--gray);
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+.AirportInfo {
+    color: var(--gray);
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.icon {
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.mid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1rem;
+    color: var(--gray);
+    font-weight: 500;
+}
+
+.divider {
+    width: 4rem;
+    height: 2px;
+    background-color: #bab7b7;
 }
