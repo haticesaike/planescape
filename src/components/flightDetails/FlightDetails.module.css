@@ -1,4 +1,4 @@
-.flightDetails{
+.flightDetails {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -6,25 +6,25 @@
     gap: 1rem;
 }
 
-.bookFlight{
+.bookFlight {
     flex: 2;
     background-color: white;
     border-radius: 10px;
 }
 
-.flightResult{
+.flightResult {
     display: flex;
     flex: 5;
     gap: 1rem;
 }
 
-.flightList{
+.flightList {
     flex: 3;
     background-color: white;
     border-radius: 10px;
 }
 
-.filters{
+.filters {
     flex: 1;
     background-color: white;
     border-radius: 10px;

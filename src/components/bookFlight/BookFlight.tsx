@@ -8,7 +8,7 @@ import {DatePickerInput} from '@mantine/dates';
 import {IoMdCalendar} from "react-icons/io";
 
 
-export default function BookFlight() {
+export default function BookFlight({setFlights}) {
     const [activeButton, setActiveButton] = useState<"roundTrip" | "oneWay">("roundTrip");
     const [departureValue, setDepartureValue] = useState<Date | null>(null);
     const [arrivalValue, setArrivalValue] = useState<Date | null>(null);
@@ -17,6 +17,21 @@ export default function BookFlight() {
     const handleButtonClick = (buttonType: "roundTrip" | "oneWay") => {
         setActiveButton(buttonType);
     }
+
+    const handleSearchFlights = () => {
+        const searchResults = [
+            {
+                id: 1,
+                departure: "Milano",
+                arrival: "Madrid",
+                departureTime: "7:30 AM",
+                arrivalTime: "9:55 AM",
+                price: "$200",
+                airline: "Alitalia",
+            },
+        ];
+        setFlights(searchResults);
+    };
 
     return <div className={styles.bookFlight}>
         <div className={styles.flight_booking_header}>
@@ -90,6 +105,7 @@ export default function BookFlight() {
             </div>
         </div>
 
-
+        {/*BOOK FLIGHT BUTTON*/}
+        <button className={styles.flight_booking_button} onClick={handleSearchFlights}>Show Flights</button>
     </div>;
 }

@@ -29,7 +29,9 @@
     font-size: 1.5rem;
 }
 
-button {
+
+.button_one {
+    border-radius: 20px 0 0 20px;
     border: none;
     background-color: var(--secondary);
     padding: 0.7rem;
@@ -39,12 +41,15 @@ button {
     width: 8rem;
 }
 
-.button_one {
-    border-radius: 20px 0 0 20px;
-}
-
 .button_two {
     border-radius: 0 20px 20px 0;
+    border: none;
+    background-color: var(--secondary);
+    padding: 0.7rem;
+    color: var(--primary);
+    font-weight: bold;
+    cursor: pointer;
+    width: 8rem;
 }
 
 .active {
@@ -77,4 +82,19 @@ button {
 
 .flight_booking_date {
     width: 18rem;
+}
+
+.flight_booking_button {
+    background-color: var(--primary);
+    color: white;
+    border-radius: 10px;
+    padding: 0.5rem;
+    cursor: pointer;
+    width: 8rem;
+}
+
+.flight_booking_button:hover {
+    background-color: var(--secondary);
+    color: var(--primary);
+    
 }
