@@ -3,7 +3,7 @@ import {IoIosAirplane} from "react-icons/io";
 import {useState} from "react";
 import {FaPlaneDeparture} from "react-icons/fa";
 import {FaPlaneArrival} from "react-icons/fa";
-import {ComboboxData, Select} from '@mantine/core';
+import {Select} from '@mantine/core';
 import {DatePickerInput} from '@mantine/dates';
 import {IoMdCalendar} from "react-icons/io";
 import airports from '../../assets/data/airports.json';
@@ -13,10 +13,14 @@ export default function BookFlight({setFlights}) {
     const [activeButton, setActiveButton] = useState<"roundTrip" | "oneWay">("roundTrip");
     const [departureValue, setDepartureValue] = useState<Date | null>(null);
     const [arrivalValue, setArrivalValue] = useState<Date | null>(null);
+    const [departureLocation, setDepartureLocation] = useState<string | null>(null);
+    const [arrivalLocation, setArrivalLocation] = useState<string | null>(null);
+    const [showTooltip, setShowTooltip] = useState(false);
 
     const handleButtonClick = (buttonType: "roundTrip" | "oneWay") => {
         setActiveButton(buttonType);
     }
+
 
     const handleSearchFlights = () => {
         const searchResults = [
@@ -57,6 +61,9 @@ export default function BookFlight({setFlights}) {
         setFlights(searchResults);
     };
 
+    const isSearchDisabled = !departureLocation || !arrivalLocation || !departureValue || (activeButton === "roundTrip" && !arrivalValue);
+
+
     return <div className={styles.bookFlight}>
         <div className={styles.flight_booking_header}>
 
@@ -91,8 +98,14 @@ export default function BookFlight({setFlights}) {
                     radius={"20px 0 0 20px"}
                     leftSection={<FaPlaneDeparture className={styles.icon}/>}
                     rightSection={(<></>)}
-                    data={['React', 'Angular', 'Vue', 'Svelte']}
+                    data={Array.isArray(Object.values(airports)) ? Object.values(airports).map(option => ({
+                        value: option.icao,
+                        label: `${option.state} - ${option.name} ${option.iata ? "(" + option.iata + ")" : ""}`,
+                    })) : []}
                     searchable
+                    limit={5}
+                    value={departureLocation}
+                    onChange={(value) => setDepartureLocation(value)}
                 />
 
 
@@ -101,8 +114,14 @@ export default function BookFlight({setFlights}) {
                     radius={"0 20px 20px 0"}
                     leftSection={<FaPlaneArrival className={styles.icon}/>}
                     rightSection={(<></>)}
-                    data={['React', 'Angular', 'Vue', 'Svelte']}
+                    data={Array.isArray(Object.values(airports)) ? Object.values(airports).map(option => ({
+                        value: option.icao,
+                        label: `${option.state} - ${option.name} ${option.iata ? "(" + option.iata + ")" : ""}`,
+                    })) : []}
                     searchable
+                    limit={5}
+                    value={arrivalLocation}
+                    onChange={(value) => setArrivalLocation(value)}
                 />
 
             </div>
@@ -129,7 +148,24 @@ export default function BookFlight({setFlights}) {
             </div>
         </div>
 
-        {/*BOOK FLIGHT BUTTON*/}
-        <button className={styles.flight_booking_button} onClick={handleSearchFlights}>Show Flights</button>
+        {/*BOOK FLIGHT BUTTON & TOOLTIP*/}
+        <div
+            className={styles.buttonContainer}
+            onMouseEnter={() => setShowTooltip(isSearchDisabled)}
+            onMouseLeave={() => setShowTooltip(false)}
+        >
+            {showTooltip && isSearchDisabled && (
+                <div className={styles.tooltip}>
+                    Lütfen tüm alanları doldurun
+                </div>
+            )}
+            <button
+                className={styles.flight_booking_button}
+                onClick={handleSearchFlights}
+                disabled={isSearchDisabled}
+            >
+                Show Flights
+            </button>
+        </div>
     </div>;
 }

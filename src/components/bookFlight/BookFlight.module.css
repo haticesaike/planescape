@@ -96,5 +96,25 @@
 .flight_booking_button:hover {
     background-color: var(--secondary);
     color: var(--primary);
-    
+
+}
+
+.buttonContainer {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 10%;
+    transform: translateX(-50%);
+    margin-bottom: 5px;
+    padding: 8px;
+    background-color: #ffcc00;
+    color: darkred;
+    font-size: 0.5rem;
+    font-weight: bold;
+    border-radius: 4px;
+    z-index: 1;
 }
