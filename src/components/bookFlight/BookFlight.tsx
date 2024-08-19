@@ -3,16 +3,16 @@ import {IoIosAirplane} from "react-icons/io";
 import {useState} from "react";
 import {FaPlaneDeparture} from "react-icons/fa";
 import {FaPlaneArrival} from "react-icons/fa";
-import {Select} from '@mantine/core';
+import {ComboboxData, Select} from '@mantine/core';
 import {DatePickerInput} from '@mantine/dates';
 import {IoMdCalendar} from "react-icons/io";
+import airports from '../../assets/data/airports.json';
 
 
 export default function BookFlight({setFlights}) {
     const [activeButton, setActiveButton] = useState<"roundTrip" | "oneWay">("roundTrip");
     const [departureValue, setDepartureValue] = useState<Date | null>(null);
     const [arrivalValue, setArrivalValue] = useState<Date | null>(null);
-
 
     const handleButtonClick = (buttonType: "roundTrip" | "oneWay") => {
         setActiveButton(buttonType);
