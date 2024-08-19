@@ -1,14 +1,21 @@
 @import "../../index.css";
-.cover{
+
+.cover {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     height: 100%;
     width: 100%;
-
 }
-.left{
+
+@media (max-width: 660px) {
+    .cover {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.left {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -16,17 +23,22 @@
     font-size: 1.5rem;
 
 }
-.right{
+
+.right {
     display: flex;
     gap: 1rem;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 }
-.item{
+
+
+.item {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    white-space: nowrap;
 }
-.logo{
+
+.logo {
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
@@ -35,13 +47,15 @@
     justify-content: start;
     align-items: center;
 }
-.iconLogo{
+
+.iconLogo {
     font-size: 2.5rem;
     color: white;
     padding-right: 5px;
 
 }
-.icon{
-    color:var(--primary);
+
+.icon {
+    color: var(--primary);
 }
 

@@ -6,62 +6,35 @@ import {FaPlaneArrival} from "react-icons/fa";
 import {Select} from '@mantine/core';
 import {DatePickerInput} from '@mantine/dates';
 import {IoMdCalendar} from "react-icons/io";
-import airports from '../../assets/data/airports.json';
+import airports from '../../assets/data/airports-data.json';
+import {getFlights} from "../../api/apiLib.tsx";
 
 
-export default function BookFlight({setFlights}) {
-    const [activeButton, setActiveButton] = useState<"roundTrip" | "oneWay">("roundTrip");
+export default function BookFlight({setFlights, buttonType, setButtonType}) {
+    //const [activeButton, setActiveButton] = useState<"roundTrip" | "oneWay">("roundTrip");
     const [departureValue, setDepartureValue] = useState<Date | null>(null);
     const [arrivalValue, setArrivalValue] = useState<Date | null>(null);
     const [departureLocation, setDepartureLocation] = useState<string | null>(null);
     const [arrivalLocation, setArrivalLocation] = useState<string | null>(null);
     const [showTooltip, setShowTooltip] = useState(false);
+    const isSearchDisabled = !departureLocation || !arrivalLocation || !departureValue || (buttonType === "roundTrip" && !arrivalValue);
 
     const handleButtonClick = (buttonType: "roundTrip" | "oneWay") => {
-        setActiveButton(buttonType);
+        setButtonType(buttonType);
     }
+    const airportsData = Object.values(airports).map(item => {
+        return ({
+            value: item.iata_code,
+            label: `${item.city} - ${item.name} (${item.iata_code})`,
+        })
+    })
 
 
-    const handleSearchFlights = () => {
-        const searchResults = [
-            {
-                id: 1,
-                departure: "Milano",
-                depAirport: "MXP",
-                arrival: "Madrid",
-                arrAirport: "MAD",
-                expectedTimeBoarding: "2024-08-15T19:28:35.061Z",
-                estimatedLandingTime: "2024-08-15T23:45:16.000+02:00",
-                price: "$230",
-                airline: "Alitalia",
-            },
-            {
-                id: 1,
-                departure: "Milano",
-                depAirport: "MXP",
-                arrival: "Madrid",
-                arrAirport: "MAD",
-                expectedTimeBoarding: "2024-08-15T19:28:35.061Z",
-                estimatedLandingTime: "2024-08-15T23:45:16.000+02:00",
-                price: "$230",
-                airline: "Alitalia",
-            },
-            {
-                id: 1,
-                departure: "Milano",
-                depAirport: "MXP",
-                arrival: "Madrid",
-                arrAirport: "MAD",
-                expectedTimeBoarding: "2024-08-15T19:28:35.061Z",
-                estimatedLandingTime: "2024-08-15T23:45:16.000+02:00",
-                price: "$230",
-                airline: "Alitalia",
-            },
-        ];
+    const handleSearchFlights = async () => {
+        const searchResults = await getFlights(`LPA`, `2024-01-01`, `D`);
+
         setFlights(searchResults);
     };
-
-    const isSearchDisabled = !departureLocation || !arrivalLocation || !departureValue || (activeButton === "roundTrip" && !arrivalValue);
 
 
     return <div className={styles.bookFlight}>
@@ -77,12 +50,12 @@ export default function BookFlight({setFlights}) {
             {/*TRIP TYPE*/}
             <div className={styles.flight_booking_trip_type}>
                 <button
-                    className={`${styles.button_one} ${activeButton === "roundTrip" ? styles.active : ""}`}
+                    className={`${styles.button_one} ${buttonType === "roundTrip" ? styles.active : ""}`}
                     onClick={() => handleButtonClick("roundTrip")}
                 >Round trip
                 </button>
                 <button
-                    className={`${styles.button_two} ${activeButton === "oneWay" ? styles.active : ""}`}
+                    className={`${styles.button_two} ${buttonType === "oneWay" ? styles.active : ""}`}
                     onClick={() => handleButtonClick("oneWay")}
                 >One way
                 </button>
@@ -98,10 +71,8 @@ export default function BookFlight({setFlights}) {
                     radius={"20px 0 0 20px"}
                     leftSection={<FaPlaneDeparture className={styles.icon}/>}
                     rightSection={(<></>)}
-                    data={Array.isArray(Object.values(airports)) ? Object.values(airports).map(option => ({
-                        value: option.icao,
-                        label: `${option.state} - ${option.name} ${option.iata ? "(" + option.iata + ")" : ""}`,
-                    })) : []}
+                    data={airportsData || []}
+                    className={styles.flight_booking_date}
                     searchable
                     limit={5}
                     value={departureLocation}
@@ -114,11 +85,9 @@ export default function BookFlight({setFlights}) {
                     radius={"0 20px 20px 0"}
                     leftSection={<FaPlaneArrival className={styles.icon}/>}
                     rightSection={(<></>)}
-                    data={Array.isArray(Object.values(airports)) ? Object.values(airports).map(option => ({
-                        value: option.icao,
-                        label: `${option.state} - ${option.name} ${option.iata ? "(" + option.iata + ")" : ""}`,
-                    })) : []}
+                    data={airportsData || []}
                     searchable
+                    className={styles.flight_booking_date}
                     limit={5}
                     value={arrivalLocation}
                     onChange={(value) => setArrivalLocation(value)}
@@ -143,7 +112,7 @@ export default function BookFlight({setFlights}) {
                     radius={"0 20px 20px 0"}
                     value={arrivalValue}
                     onChange={setArrivalValue}
-                    disabled={activeButton === "oneWay"}
+                    disabled={buttonType === "oneWay"}
                 />
             </div>
         </div>

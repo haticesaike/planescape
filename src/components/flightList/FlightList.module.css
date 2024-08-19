@@ -1,8 +1,11 @@
 .flightList {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     height: 100%;
     width: 100%;
+    gap: 20px;
 }
 
 .flightItem {
@@ -10,7 +13,7 @@
     flex-direction: column;
     padding: 0.5rem;
     gap: 0.8rem;
-    height: 10rem;
+    height: 11rem;
     width: 95%;
     background-color: white;
     border-radius: 10px;
@@ -53,4 +56,20 @@
     width: 4rem;
     height: 2px;
     background-color: #bab7b7;
+}
+
+.bookFlight {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.bookNow {
+    background-color: var(--primary);
+    color: white;
+    border-radius: 10px 0 10px 0;
+    text-align: center;
+    padding: 10px;
+    font-weight: 500;
+    cursor: pointer;
 }

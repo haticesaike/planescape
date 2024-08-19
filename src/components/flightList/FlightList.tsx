@@ -5,7 +5,7 @@ import {TbPlaneArrival} from "react-icons/tb";
 import {IoIosAirplane} from "react-icons/io";
 
 
-export default function FlightList({flights}) {
+export default function FlightList({flights, buttonType}) {
 
     function formatTime(dateString: string): string {
         const date = new Date(dateString);
@@ -41,57 +41,66 @@ export default function FlightList({flights}) {
                 </div>
             ) : (
                 flights.map((flight) => (
-                    <div key={flight.id} className={styles.flightItem}>
-                        <div className={styles.destination}>{flight.departure}-{flight.arrival}</div>
-                        <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-                            {/*LEFT*/}
+                    console.log('sad', flight),
+                        <div key={flight.id} className={styles.flightItem}>
+                            <div
+                                className={styles.destination}>{flight.route.destinations}-{flight.route.destinations}</div>
+
+                            <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+                                {/*LEFT*/}
+                                <div>
+                                    <div className={styles.departure}>
+                                        <TbPlaneDeparture style={{fontSize: "1rem"}}/>
+                                        <p>Departure</p>
+                                    </div>
+
+                                    <div style={{fontWeight: "700", color: "#2c2a2a"}}>
+                                        <p>{formatTime(flight.checkinAllocations.checkinAllocations[0].startTime)}</p>
+
+                                    </div>
+                                    <div className={styles.AirportInfo}>Airport:{flight.flightName}</div>
+                                </div>
+
+                                {/*DIVIDER*/}
+                                <div className={styles.divider}></div>
+
+                                {/*MID*/}
+                                <div className={styles.mid}>
+                                    <div>{flight.airline}</div>
+                                    <IoIosAirplane className={styles.icon}/>
+                                    {calculateFlightDuration(flight.checkinAllocations.checkinAllocations[0].startTime, flight.checkinAllocations.checkinAllocations[0].endTime)}
+                                </div>
+
+                                {/*DIVIDER*/}
+                                <div className={styles.divider}></div>
+
+                                {/*RIGHT*/}
+                                <div>
+                                    <div className={styles.arrival}>
+                                        <TbPlaneArrival style={{fontSize: "1rem"}}/>
+                                        <p>Arrival</p>
+                                    </div>
+
+                                    <div style={{fontWeight: "700", color: "#2c2a2a"}}>
+                                        <p>{formatTime(flight.checkinAllocations.checkinAllocations[0].endTime)}</p>
+
+                                    </div>
+                                    <div className={styles.AirportInfo}>Airport:{flight.flightName}</div>
+
+                                </div>
+                            </div>
+                            <div className={styles.bookFlight}>
+                                <div style={{display: "flex", flexDirection: "column"}}>
+                                    <p style={{fontWeight: "700", color: "#400cac"}}>Price: 230$</p>
+                                    <div>{buttonType === "roundTrip" ? "Round trip" : "One way"}</div>
+                                </div>
+                                <div className={styles.bookNow}> Book Flight</div>
+                            </div>
                             <div>
-                                <div className={styles.departure}>
-                                    <TbPlaneDeparture style={{fontSize: "1rem"}}/>
-                                    <p>Departure</p>
-                                </div>
-
-                                <div style={{fontWeight: "700", color: "#2c2a2a"}}>
-                                    <p>{formatTime(flight.expectedTimeBoarding)}</p>
-
-                                </div>
-                                <div className={styles.AirportInfo}>Airport:{flight.depAirport}</div>
 
                             </div>
-
-                            {/*DIVIDER*/}
-                            <div className={styles.divider}></div>
-
-                            {/*MID*/}
-                            <div className={styles.mid}>
-                                <div>{flight.airline}</div>
-                                <IoIosAirplane className={styles.icon}/>
-                                {calculateFlightDuration(flight.expectedTimeBoarding, flight.estimatedLandingTime)}
-                            </div>
-
-                            {/*DIVIDER*/}
-                            <div className={styles.divider}></div>
-
-                            {/*RIGHT*/}
-                            <div>
-                                <div className={styles.arrival}>
-                                    <TbPlaneArrival style={{fontSize: "1rem"}}/>
-                                    <p>Arrival</p>
-                                </div>
-
-                                <div style={{fontWeight: "700", color: "#2c2a2a"}}>
-                                    <p>{formatTime(flight.estimatedLandingTime)}</p>
-
-                                </div>
-                                <div className={styles.AirportInfo}>Airport:{flight.arrAirport}</div>
-
-                            </div>
-                        </div>
-                        <div>
 
                         </div>
-
-                    </div>
                 ))
             )}
         </div>
